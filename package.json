@@ -1,0 +1,23 @@
+{
+  "name": "constructionsafety-microsite",
+  "version": "1.0.0",
+  "description": "Construction Safety Consulting micro-site",
+  "scripts": {
+    "download-images": "node download-images.js",
+    "download-images:homepage": "node download-images.js homepage",
+    "download-images:ssho": "node download-images.js ssho-services",
+    "download-images:safety": "node download-images.js safety-representatives",
+    "download-images:all": "node download-images.js all"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "construction",
+    "safety",
+    "consulting"
+  ],
+  "author": "EHS Analytical Solutions",
+  "license": "UNLICENSED"
+}

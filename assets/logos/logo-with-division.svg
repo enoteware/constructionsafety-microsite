@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Logo with Division Text - EHS Analytical Solutions -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     width="421.966px" height="200px" viewBox="0 0 421.966 200" enable-background="new 0 0 421.966 200"
+     xml:space="preserve">
+  <!-- Include the original logo -->
+  <g transform="translate(0, 0)">
+    <use xlink:href="final-logo.svg#Layer_5" />
+    <use xlink:href="final-logo.svg#Layer_6" />
+    <use xlink:href="final-logo.svg#Layer_8" />
+    <use xlink:href="final-logo.svg#Layer_2" />
+    <use xlink:href="final-logo.svg#Layer_3" />
+    <use xlink:href="final-logo.svg#Layer_4" />
+    <use xlink:href="final-logo.svg#Layer_7" />
+  </g>
+  
+  <!-- Division text below logo -->
+  <text x="210.983" y="185" 
+        font-family="Roboto, sans-serif" 
+        font-size="11" 
+        fill="#6C757D" 
+        text-anchor="middle">
+    A Division of EHS Analytical Solutions, Inc.
+  </text>
+</svg>

@@ -1,62 +1,86 @@
 [
   {
     "id": 1,
+    "name": "Bobby Mckee",
+    "position": "Client",
+    "company": "EHS Analytical Solutions Client",
+    "testimonial": "We hired EHS Analytical Solutions, Inc. 'EHS' to support us with many of our safety and environmental needs. Adam with EHS was very professional, friendly and easy to work with. Not only did Adam help streamline our safety related operations, he identified how we can save $50,000 each year from eliminating one of our major waste streams!!! Using EHS Analytical Solutions was one of the best decisions we made all year. Thank you EHS!!",
+    "service": "Safety Consulting",
+    "rating": 5,
+    "date": "2024-01-01",
+    "source": "ehsanalytical.com/construction-safety-consulting/landing/",
+    "verified": true
+  },
+  {
+    "id": 2,
     "name": "John Smith",
     "position": "Project Manager",
     "company": "ABC Construction",
     "testimonial": "EHS Analytical Solutions provided exceptional SSHO services for our federal construction project. Their team's expertise in EM 385-1-1 compliance and attention to detail helped us maintain a perfect safety record throughout the project.",
     "service": "SSHO Services",
     "rating": 5,
-    "date": "2024-11-15"
+    "date": "2024-11-15",
+    "verified": false,
+    "note": "Placeholder - replace with real testimonial"
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "Sarah Johnson",
     "position": "Safety Director",
     "company": "Caltrans Contractor",
     "testimonial": "Working with Construction Safety Consulting has been outstanding. Their safety representatives are professional, knowledgeable, and truly understand Cal-OSHA requirements. They've been instrumental in keeping our jobsite safe and compliant.",
     "service": "Safety Representatives",
     "rating": 5,
-    "date": "2024-10-20"
+    "date": "2024-10-20",
+    "verified": false,
+    "note": "Placeholder - replace with real testimonial"
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Michael Chen",
     "position": "Operations Manager",
     "company": "Heavy Civil Construction Co.",
     "testimonial": "The safety program development services we received were comprehensive and tailored to our specific needs. EHS Analytical Solutions created detailed IIPP and JHA documents that have significantly improved our safety culture and compliance.",
     "service": "Safety Program Development",
     "rating": 5,
-    "date": "2024-09-12"
+    "date": "2024-09-12",
+    "verified": false,
+    "note": "Placeholder - replace with real testimonial"
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Lisa Rodriguez",
     "position": "HR Director",
     "company": "Manufacturing Facility",
     "testimonial": "The OSHA safety training provided by Construction Safety Consulting was excellent. Our employees found the sessions engaging and informative. The training has helped us reduce workplace incidents and improve overall safety awareness.",
     "service": "Safety Training & Consulting",
     "rating": 5,
-    "date": "2024-08-05"
+    "date": "2024-08-05",
+    "verified": false,
+    "note": "Placeholder - replace with real testimonial"
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Robert Williams",
     "position": "General Contractor",
     "company": "Federal Construction Projects",
     "testimonial": "As a SDVOSB-certified company, EHS Analytical Solutions helped us meet our small business participation goals while delivering top-notch safety services. Their SSHO was knowledgeable, professional, and always available when we needed guidance.",
     "service": "SSHO Services",
     "rating": 5,
-    "date": "2024-07-18"
+    "date": "2024-07-18",
+    "verified": false,
+    "note": "Placeholder - replace with real testimonial"
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Jennifer Martinez",
     "position": "Site Superintendent",
     "company": "Highway Construction",
     "testimonial": "The on-site safety representative from Construction Safety Consulting was a valuable addition to our team. Their daily inspections and Cal-OSHA compliance verification gave us confidence that we were meeting all regulatory requirements.",
     "service": "Safety Representatives",
     "rating": 5,
-    "date": "2024-06-22"
+    "date": "2024-06-22",
+    "verified": false,
+    "note": "Placeholder - replace with real testimonial"
   }
 ]

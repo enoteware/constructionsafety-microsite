@@ -107,4 +107,66 @@ document.addEventListener('DOMContentLoaded', function() {
             revealObserver.observe(el);
         }
     });
+
+    // Load and display testimonials
+    loadTestimonials(revealObserver);
 });
+
+/**
+ * Load testimonials from JSON file and display them
+ */
+async function loadTestimonials(observer) {
+    const container = document.getElementById('testimonials-container');
+    if (!container) return;
+
+    try {
+        const response = await fetch('testimonials.json');
+        if (!response.ok) {
+            throw new Error('Failed to load testimonials');
+        }
+        
+        const testimonials = await response.json();
+        
+        // Filter to show only verified testimonials, or show all if no verified ones
+        const verifiedTestimonials = testimonials.filter(t => t.verified === true);
+        const testimonialsToShow = verifiedTestimonials.length > 0 ? verifiedTestimonials : testimonials;
+        
+        // Limit to 6 testimonials max
+        const displayTestimonials = testimonialsToShow.slice(0, 6);
+        
+        if (displayTestimonials.length === 0) {
+            container.innerHTML = '<p style="text-align: center; color: var(--medium-gray);">No testimonials available at this time.</p>';
+            return;
+        }
+        
+        container.innerHTML = displayTestimonials.map(testimonial => {
+            const stars = '★'.repeat(testimonial.rating || 5);
+            const serviceTag = testimonial.service ? `<span class="testimonial-service">${testimonial.service}</span>` : '';
+            
+            return `
+                <div class="testimonial-card fade-in-up">
+                    <div class="testimonial-rating" aria-label="${testimonial.rating || 5} out of 5 stars">${stars}</div>
+                    <p class="testimonial-text">${testimonial.testimonial}</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-name">${testimonial.name}</div>
+                        <div class="testimonial-author-details">
+                            ${testimonial.position ? testimonial.position : ''}${testimonial.position && testimonial.company ? ', ' : ''}${testimonial.company ? testimonial.company : ''}
+                        </div>
+                        ${serviceTag}
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        // Observe new testimonial cards for animation
+        if (observer) {
+            container.querySelectorAll('.testimonial-card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+        
+    } catch (error) {
+        console.error('Error loading testimonials:', error);
+        container.innerHTML = '<p style="text-align: center; color: var(--medium-gray);">Unable to load testimonials at this time.</p>';
+    }
+}

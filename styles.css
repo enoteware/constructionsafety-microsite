@@ -563,6 +563,103 @@ section h2 {
     line-height: 1.8;
 }
 
+/* Testimonials Section */
+.testimonials-section {
+    background-color: var(--light-gray);
+    padding: 80px 20px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.testimonial-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 1rem;
+    color: #FFB84D;
+    font-size: 18px;
+}
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark-gray);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.testimonial-text::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 48px;
+    color: var(--safety-orange);
+    opacity: 0.3;
+    font-family: Georgia, serif;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--light-gray);
+    padding-top: 1rem;
+}
+
+.testimonial-author-name {
+    font-weight: 600;
+    color: var(--navy-blue);
+    font-size: 16px;
+    margin-bottom: 0.25rem;
+}
+
+.testimonial-author-details {
+    font-size: 14px;
+    color: var(--medium-gray);
+}
+
+.testimonial-service {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--safety-orange);
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+}
+
 /* CTA Section */
 .cta-section {
     background: linear-gradient(135deg, var(--navy-blue) 0%, #004080 100%);
@@ -672,6 +769,70 @@ section h2 {
     padding-top: 2rem;
     border-top: 1px solid rgba(255,255,255,0.2);
     color: rgba(255,255,255,0.9);
+}
+
+/* Mobile Sticky CTA */
+.mobile-sticky-cta {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-sticky-cta {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--white);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+        z-index: 999;
+        padding: 12px 20px;
+        border-top: 2px solid var(--safety-orange);
+    }
+    
+    .mobile-sticky-cta-content {
+        display: flex;
+        gap: 10px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .mobile-sticky-cta .btn {
+        flex: 1;
+        padding: 12px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap;
+        min-width: 0;
+    }
+    
+    .mobile-sticky-cta .btn-primary {
+        background-color: var(--safety-orange);
+        color: var(--white);
+        border: none;
+    }
+    
+    .mobile-sticky-cta .btn-primary:hover {
+        background-color: #E65C00;
+        transform: none;
+    }
+    
+    .mobile-sticky-cta .btn-secondary {
+        background-color: transparent;
+        border: 2px solid var(--navy-blue);
+        color: var(--navy-blue);
+    }
+    
+    .mobile-sticky-cta .btn-secondary:hover {
+        background-color: var(--navy-blue);
+        color: var(--white);
+    }
+    
+    /* Add padding to body on mobile to prevent content from being hidden behind sticky CTA */
+    body {
+        padding-bottom: 80px;
+    }
 }
 
 /* Additional Styles for New Sections */

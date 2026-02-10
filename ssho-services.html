@@ -117,9 +117,8 @@
         <div class="container">
             <div class="nav-content">
                 <a href="/" class="logo">
-                    <span class="logo-main">CONSTRUCTION SAFETY</span>
-                    <span class="logo-sub">CONSULTING</span>
-                    <span class="logo-division">A Division of <a href="https://ehsanalytical.com" target="_blank" rel="noopener">EHS Analytical Solutions</a></span>
+                    <span class="logo-text">Construction Safety Consulting</span>
+                    <span class="logo-division">A Division of <a href="https://ehsanalytical.com" target="_blank" rel="noopener" class="logo-link">EHS Analytical Solutions</a></span>
                 </a>
                 <button class="mobile-menu-toggle" aria-label="Toggle menu">
                     <span></span>
@@ -440,19 +439,55 @@
         <div class="container">
             <h2>Request SSHO Services for Your Federal Project</h2>
             <p>Whether you're bidding a USACE construction project, starting a NAVFAC renovation, or managing an Air Force facility upgrade, we provide qualified, experienced SSHOs who ensure safety compliance and represent your company professionally.</p>
-            <p>Contact us today to request SSHO resumes for your bid package or to discuss SSHO mobilization for an awarded project. We respond to all inquiries within 24 hours.</p>
             
-            <div class="cta-buttons">
-                <a href="mailto:adam@ehsanalytical.com" class="btn btn-primary">Request SSHO Quote</a>
-                <a href="tel:6192883094" class="btn btn-secondary">Call (619) 288-3094</a>
-            </div>
-            
-            <div class="contact-info">
-                <p><strong>Construction Safety Consulting</strong></p>
-                <p>A Division of <a href="https://ehsanalytical.com" target="_blank" rel="noopener">EHS Analytical Solutions, Inc.</a></p>
-                <p>Phone: <a href="tel:6192883094">(619) 288-3094</a></p>
-                <p>Email: <a href="mailto:adam@ehsanalytical.com">adam@ehsanalytical.com</a></p>
-                <p class="main-site-link"><strong><a href="https://ehsanalytical.com" target="_blank" rel="noopener">Visit EHS Analytical Solutions for comprehensive EHS consulting services →</a></strong></p>
+            <div class="contact-grid">
+                <div class="contact-form-container">
+                    <h3>Request SSHO Quote</h3>
+                    <form id="contact-form" class="contact-form" action="https://formsubmit.co/adam@ehsanalytical.com" method="POST">
+                        <input type="hidden" name="_subject" value="SSHO Services Quote Request">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://constructionsafety.consulting/ssho-services?submitted=true">
+                        
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Your company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" name="message" rows="4" required placeholder="Project location, agency (USACE/NAVFAC/etc), timeline, specific SSHO requirements..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">Request SSHO Quote</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Construction Safety Consulting</strong></p>
+                    <p>A Division of EHS Analytical Solutions, Inc.</p>
+                    <div class="contact-methods">
+                        <p><strong>Phone:</strong> <a href="tel:6192883094">(619) 288-3094</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:adam@ehsanalytical.com">adam@ehsanalytical.com</a></p>
+                    </div>
+                    <p class="response-time">We respond to all inquiries within 24 hours.</p>
+                    <p class="main-site-link"><a href="https://ehsanalytical.com" target="_blank" rel="noopener">Visit EHS Analytical Solutions →</a></p>
+                </div>
             </div>
         </div>
     </section>
@@ -490,14 +525,6 @@
                     <p>SDVOSB | DVBE #2017031 | CIH | CSP</p>
                 </div>
 
-                <div class="footer-column">
-                    <h4>Related Services</h4>
-                    <ul>
-                        <li><a href="https://industrialhygiene-microsite.vercel.app" target="_blank" rel="noopener">Industrial Hygiene Consulting</a></li>
-                        <li><a href="https://caltransleadcomplianceplan-microsit.vercel.app" target="_blank" rel="noopener">Caltrans Lead Compliance Plans</a></li>
-                        <li><a href="https://ehsanalytical.com" target="_blank" rel="noopener">EHS Analytical Solutions</a></li>
-                    </ul>
-                </div>
             </div>
 
             <div class="footer-bottom">

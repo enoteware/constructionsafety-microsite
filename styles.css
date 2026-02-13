@@ -1414,6 +1414,7 @@ body.page-safety-reps .hero {
     gap: 3rem;
     align-items: start;
     margin-top: 2rem;
+    text-align: left;
 }
 
 .contact-form-container {
@@ -1421,11 +1422,13 @@ body.page-safety-reps .hero {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: left;
 }
 
 .contact-form-container h3 {
     margin-bottom: 1.5rem;
     color: #1a365d;
+    text-align: left;
 }
 
 .contact-form .form-group {
@@ -1437,6 +1440,7 @@ body.page-safety-reps .hero {
     margin-bottom: 0.5rem;
     font-weight: 600;
     color: #333;
+    text-align: left;
 }
 
 .contact-form input,
@@ -1467,8 +1471,14 @@ body.page-safety-reps .hero {
     width: 100%;
 }
 
+.contact-info {
+    text-align: left;
+}
+
 .contact-info h3 {
     margin-bottom: 1.5rem;
+    text-align: left;
+    color: var(--white);
 }
 
 .contact-methods {

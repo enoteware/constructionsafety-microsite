@@ -191,13 +191,40 @@
                     // Trusted source: ehsanalytical.com contact-embed endpoint
                     container.innerHTML = html;
 
-                    // Render Turnstile widget if present
-                    if (window.turnstile) {
-                        window.turnstile.ready(function () {
-                            var w = container.querySelector('#contact-turnstile-container, .cf-turnstile, [data-sitekey]');
-                            if (w) window.turnstile.render(w, { sitekey: container.getAttribute('data-turnstile-sitekey') || TURNSTILE_SITEKEY });
-                        });
+                    // Ensure Turnstile has a container (embed may omit it if server has no key)
+                    var form = container.querySelector('form');
+                    var turnstileContainer = container.querySelector('#contact-turnstile-container, .cf-turnstile, [data-sitekey]');
+                    if (form && !turnstileContainer) {
+                        var wrap = document.createElement('div');
+                        wrap.id = 'contact-turnstile-container';
+                        wrap.className = 'contact-turnstile-wrap';
+                        var btn = form.querySelector('button[type="submit"]');
+                        if (btn) {
+                            form.insertBefore(wrap, btn);
+                        } else {
+                            form.appendChild(wrap);
+                        }
                     }
+
+                    // Render Turnstile widget when API is ready (script may load after inject)
+                    var sitekey = container.getAttribute('data-turnstile-sitekey') || TURNSTILE_SITEKEY;
+                    var attempts = 0;
+                    var maxAttempts = 50;
+                    function renderTurnstileWhenReady() {
+                        var w = container.querySelector('#contact-turnstile-container, .cf-turnstile, [data-sitekey]');
+                        if (!w) return;
+                        if (typeof window.turnstile === 'object') {
+                            window.turnstile.ready(function () {
+                                window.turnstile.render(w, { sitekey: sitekey, theme: 'light', size: 'normal' });
+                            });
+                            return;
+                        }
+                        attempts += 1;
+                        if (attempts < maxAttempts) {
+                            setTimeout(renderTurnstileWhenReady, 100);
+                        }
+                    }
+                    renderTurnstileWhenReady();
 
                     // Intercept form submit – POST via fetch to embed URL, show inline TY
                     // Handles both JSON (WordPress AJAX mode) and HTML (fallback) responses

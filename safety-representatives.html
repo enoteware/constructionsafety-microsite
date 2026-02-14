@@ -38,6 +38,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact-form.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+    <script src="contact-form-inject.js" defer></script>
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -483,64 +486,21 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="contact" class="cta-section">
+    <section id="contact" class="cta-section contact-section">
         <div class="container">
             <h2>Request Safety Representative Services</h2>
-            <p>Whether you're starting a new construction project, need to fill a safety staffing gap, or want to upgrade your safety program with professional expertise, we provide qualified safety representatives who protect your workers and maintain compliance.</p>
+            <p class="section-intro">Whether you're starting a new construction project, need to fill a safety staffing gap, or want to upgrade your safety program with professional expertise, we provide qualified safety representatives who protect your workers and maintain compliance.</p>
             
             <div class="contact-grid">
-                <div class="contact-form-container">
-                    <h3>Request Safety Rep Quote</h3>
-                    <form id="contact-form" class="contact-form" action="https://formsubmit.co/adam@ehsanalytical.com" method="POST">
-                        <input type="hidden" name="_subject" value="Construction Safety Consulting – Contact Request">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://constructionsafety.consulting/safety-representatives?submitted=true">
-                        <div class="hp-field" style="position:absolute;left:-9999px" aria-hidden="true">
-                            <label for="website">Website</label>
-                            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Your name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required placeholder="your@email.com">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company" name="company" placeholder="Your company name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Project Details *</label>
-                            <textarea id="message" name="message" rows="4" required placeholder="Project location, duration, type of work, specific safety requirements..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-full">Submit Request</button>
-                    </form>
-                </div>
-
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p><strong>Construction Safety Consulting</strong></p>
-                    <p>Powered by EHS Analytical Solutions, Inc.</p>
-                    <p>San Diego, California | Serving Statewide & Nationwide</p>
-                    <div class="contact-methods">
-                        <p><strong>Phone:</strong> <a href="tel:6192883094">(619) 288-3094</a></p>
-                        <p><strong>Email:</strong> <a href="mailto:adam@ehsanalytical.com">adam@ehsanalytical.com</a></p>
-                    </div>
-                    <p class="response-time">Fast quotes and quick mobilization available.</p>
-                    <p class="main-site-link"><a href="https://ehsanalytical.com" target="_blank" rel="noopener">Visit EHS Analytical Solutions →</a></p>
+                <div id="contact-form-inject" class="contact-form-container" data-variant="service" data-embed-url="https://ehsanalytical.com/contact-embed/?source=constructionsafety"></div>
+                <div class="contact-info-block">
+                    <h4>Construction Safety Consulting</h4>
+                    <p>Powered by <a href="https://ehsanalytical.com">EHS Analytical Solutions, Inc.</a></p>
+                    <p>San Diego, California<br>Serving Statewide & Nationwide</p>
+                    <p style="margin-top: 1rem;">Phone: <a href="tel:6192883094">(619) 288-3094</a></p>
+                    <p>Email: <a href="mailto:adam@ehsanalytical.com">adam@ehsanalytical.com</a></p>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;">Fast quotes and quick mobilization available.</p>
+                    <p><a href="https://ehsanalytical.com" target="_blank" rel="noopener">Visit EHS Analytical Solutions →</a></p>
                 </div>
             </div>
         </div>

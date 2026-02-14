@@ -475,9 +475,14 @@
                 <div class="contact-form-container">
                     <h3>Request a Quote</h3>
                     <form id="contact-form" class="contact-form" action="https://formsubmit.co/adam@ehsanalytical.com" method="POST">
-                        <input type="hidden" name="_subject" value="Construction Safety Quote Request">
+                        <input type="hidden" name="_subject" value="Construction Safety Inquiry from constructionsafety.consulting">
                         <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="https://constructionsafety.consulting/?submitted=true">
+                        <div class="hp-field" style="position:absolute;left:-9999px" aria-hidden="true">
+                            <label for="website">Website</label>
+                            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                        </div>
                         
                         <div class="form-group">
                             <label for="name">Name *</label>
@@ -490,8 +495,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                            <label for="phone">Phone *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
                         </div>
                         
                         <div class="form-group">

@@ -105,6 +105,7 @@ npx serve
 - [ ] Mobile menu functions
 - [ ] Links work (internal and external)
 - [ ] Contact buttons work (phone, email)
+- [ ] Contact forms: submit once per page and confirm redirect to thank-you URL and email delivery to adam@ehsanalytical.com (FormSubmit.co)
 - [ ] Responsive on mobile, tablet, desktop
 - [ ] Images load (if added)
 - [ ] Page speed acceptable
@@ -152,6 +153,7 @@ Search and replace in all HTML files:
 
 ## Notes
 
+- Contact forms use [FormSubmit.co](https://formsubmit.co); submissions are delivered to **adam@ehsanalytical.com**.
 - Site is static HTML/CSS/JS (no build process needed)
 - Works with any static hosting (Vercel, Netlify, GitHub Pages, etc.)
 - No database or server-side code required

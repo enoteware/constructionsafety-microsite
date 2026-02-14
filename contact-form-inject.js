@@ -304,6 +304,31 @@
             container.appendChild(h3);
         }
         container.appendChild(form);
+
+        // Fallback form: submit via fetch with redirect: 'manual' so we stay on page and show inline thank-you
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = form.querySelector('button[type="submit"]');
+            var btnDefaultText = btn ? btn.textContent : 'Submit Request';
+            if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+            var formData = new FormData(form);
+            fetch(FORM_ACTION, { method: 'POST', body: formData, redirect: 'manual' })
+                .then(function (r) {
+                    // FormSubmit.co returns 302 to _next; with redirect: 'manual' we get opaqueredirect or 302
+                    if (r.type === 'opaqueredirect' || r.redirected || r.status === 302 || r.ok) {
+                        showThankYou(form);
+                        return;
+                    }
+                    if (btn) { btn.disabled = false; btn.textContent = btnDefaultText; }
+                    showFormError(container, form, btn, btnDefaultText, 'Submission failed. Please try again.');
+                })
+                .catch(function () {
+                    if (btn) { btn.disabled = false; btn.textContent = btnDefaultText; }
+                    showFormError(container, form, btn, btnDefaultText, 'There was an error.');
+                });
+        });
+
         if (window.turnstile) {
             renderTurnstile(container);
         } else {

@@ -1059,17 +1059,13 @@ section h2 {
     transform: translateY(0);
 }
 
-/* Navbar scroll effect */
+/* Navbar scroll effect (box-shadow only — no padding change, avoids layout shift) */
 .navbar {
-    transition: box-shadow 0.3s ease, padding 0.3s ease;
+    transition: box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.navbar.scrolled .nav-content {
-    padding: 12px 0;
 }
 
 /* Enhanced card hover effects */

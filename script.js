@@ -28,21 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Navbar scroll effect
+    // Navbar scroll effect (shadow only in CSS — no bar height change)
     const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.scrollY;
-
-        if (currentScroll > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+    if (navbar) {
+        function syncNavbarScrolled() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         }
-
-        lastScroll = currentScroll;
-    }, { passive: true });
+        syncNavbarScrolled();
+        window.addEventListener('scroll', syncNavbarScrolled, { passive: true });
+    }
 
     // Scroll reveal animations with IntersectionObserver
     const observerOptions = {

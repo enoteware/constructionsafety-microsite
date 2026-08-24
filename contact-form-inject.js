@@ -46,6 +46,24 @@
         return div;
     }
 
+    function renderTurnstileWhenReady(widgetEl, options) {
+        var attempts = 0;
+        function attemptRender() {
+            if (!widgetEl || widgetEl.querySelector('iframe')) return;
+            attempts += 1;
+            try {
+                if (window.turnstile && typeof window.turnstile.render === 'function') {
+                    var widgetId = window.turnstile.render(widgetEl, options);
+                    if (typeof widgetId === 'string') return;
+                }
+            } catch (error) {
+                // The API exposes a temporary stub while its full script loads.
+            }
+            if (attempts < 50) setTimeout(attemptRender, 100);
+        }
+        setTimeout(attemptRender, 100);
+    }
+
     function buildHomeForm() {
         var form = el('form', { className: 'contact-form', action: DEFAULT_EMBED_URL, method: 'POST', 'data-ih-injected': 'true' });
         form.appendChild(el('input', { type: 'hidden', name: '_subject', value: SUBJECT }));
@@ -128,14 +146,12 @@
     function renderTurnstile(container) {
         var sitekey = container.getAttribute('data-turnstile-sitekey') || TURNSTILE_SITEKEY;
         var widgetEl = document.getElementById('contact-turnstile-container');
-        if (!widgetEl || typeof window.turnstile !== 'object') return;
-        window.turnstile.ready(function () {
-            window.turnstile.render(widgetEl, {
-                sitekey: sitekey,
-                action: 'contact_submit',
-                theme: 'light',
-                size: 'normal'
-            });
+        if (!widgetEl) return;
+        renderTurnstileWhenReady(widgetEl, {
+            sitekey: sitekey,
+            action: 'contact_submit',
+            theme: 'light',
+            size: 'normal'
         });
     }
 
@@ -212,28 +228,13 @@
 
                     // Render Turnstile widget when API is ready (script may load after inject)
                     var sitekey = container.getAttribute('data-turnstile-sitekey') || TURNSTILE_SITEKEY;
-                    var attempts = 0;
-                    var maxAttempts = 50;
-                    function renderTurnstileWhenReady() {
-                        var w = container.querySelector('#contact-turnstile-container, .cf-turnstile, [data-sitekey]');
-                        if (!w) return;
-                        if (typeof window.turnstile === 'object') {
-                            window.turnstile.ready(function () {
-                                window.turnstile.render(w, {
-                                    sitekey: sitekey,
-                                    action: 'contact_submit',
-                                    theme: 'light',
-                                    size: 'normal'
-                                });
-                            });
-                            return;
-                        }
-                        attempts += 1;
-                        if (attempts < maxAttempts) {
-                            setTimeout(renderTurnstileWhenReady, 100);
-                        }
-                    }
-                    renderTurnstileWhenReady();
+                    var w = container.querySelector('#contact-turnstile-container, .cf-turnstile, [data-sitekey]');
+                    renderTurnstileWhenReady(w, {
+                        sitekey: sitekey,
+                        action: 'contact_submit',
+                        theme: 'light',
+                        size: 'normal'
+                    });
 
                     // Intercept form submit – POST via fetch to embed URL, show inline TY
                     // Handles both JSON (WordPress AJAX mode) and HTML (fallback) responses

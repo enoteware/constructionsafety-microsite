@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    var FORM_ACTION = 'https://formsubmit.co/adam@ehsanalytical.com';
+    var DEFAULT_EMBED_URL = 'https://ehsanalytical.com/contact-embed/?source=constructionsafety';
     var SUBJECT = 'Construction Safety Inquiry from constructionsafety.consulting';
     var SUBJECT_SERVICE = 'Construction Safety Consulting – Contact Request';
     var NEXT_URL = 'https://constructionsafety.consulting/?submitted=1';
@@ -47,7 +47,7 @@
     }
 
     function buildHomeForm() {
-        var form = el('form', { className: 'contact-form', action: FORM_ACTION, method: 'POST', 'data-ih-injected': 'true' });
+        var form = el('form', { className: 'contact-form', action: DEFAULT_EMBED_URL, method: 'POST', 'data-ih-injected': 'true' });
         form.appendChild(el('input', { type: 'hidden', name: '_subject', value: SUBJECT }));
         form.appendChild(el('input', { type: 'hidden', name: '_next', value: NEXT_URL }));
         form.appendChild(el('input', { type: 'hidden', name: '_captcha', value: 'false' }));
@@ -96,7 +96,7 @@
     }
 
     function buildServiceForm() {
-        var form = el('form', { id: 'contact-form', className: 'contact-form', action: FORM_ACTION, method: 'POST', 'data-ih-injected': 'true' });
+        var form = el('form', { id: 'contact-form', className: 'contact-form', action: DEFAULT_EMBED_URL, method: 'POST', 'data-ih-injected': 'true' });
         form.appendChild(el('input', { type: 'hidden', name: '_subject', value: SUBJECT_SERVICE }));
         form.appendChild(el('input', { type: 'hidden', name: '_captcha', value: 'false' }));
         form.appendChild(el('input', { type: 'hidden', name: '_next', value: NEXT_URL }));
@@ -132,6 +132,7 @@
         window.turnstile.ready(function () {
             window.turnstile.render(widgetEl, {
                 sitekey: sitekey,
+                action: 'contact_submit',
                 theme: 'light',
                 size: 'normal'
             });
@@ -183,10 +184,13 @@
         var container = document.getElementById('contact-form-inject');
         if (!container) return;
 
-        var embedUrl = container.getAttribute('data-embed-url');
+        var embedUrl = container.getAttribute('data-embed-url') || DEFAULT_EMBED_URL;
         if (embedUrl) {
-            fetch(embedUrl, { mode: 'cors' })
-                .then(function (r) { return r.text(); })
+            fetch(embedUrl, { mode: 'cors', credentials: 'omit' })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('Contact form unavailable');
+                    return r.text();
+                })
                 .then(function (html) {
                     // Trusted source: ehsanalytical.com contact-embed endpoint
                     container.innerHTML = html;
@@ -215,7 +219,12 @@
                         if (!w) return;
                         if (typeof window.turnstile === 'object') {
                             window.turnstile.ready(function () {
-                                window.turnstile.render(w, { sitekey: sitekey, theme: 'light', size: 'normal' });
+                                window.turnstile.render(w, {
+                                    sitekey: sitekey,
+                                    action: 'contact_submit',
+                                    theme: 'light',
+                                    size: 'normal'
+                                });
                             });
                             return;
                         }
@@ -240,7 +249,7 @@
                             // Append ajax=1 to URL to signal WordPress this is an AJAX request
                             // Avoids X-Requested-With header which triggers CORS preflight
                             var postUrl = embedUrl + (embedUrl.indexOf('?') !== -1 ? '&' : '?') + 'ajax=1';
-                            fetch(postUrl, { method: 'POST', body: formData, mode: 'cors' })
+                            fetch(postUrl, { method: 'POST', body: formData, mode: 'cors', credentials: 'omit' })
                                 .then(function (r) {
                                     return r.text().then(function (text) {
                                         // Try JSON first (WordPress AJAX mode returns {"success":true})
@@ -287,53 +296,19 @@
                     }
                 })
                 .catch(function () {
-                    injectBuiltForm(container);
+                    showUnavailable(container);
                 });
             return;
         }
-        injectBuiltForm(container);
+        showUnavailable(container);
     }
 
-    function injectBuiltForm(container) {
+    function showUnavailable(container) {
         container.innerHTML = '';
-        var variant = (container.getAttribute('data-variant') || 'home').toLowerCase();
-        var form = variant === 'service' ? buildServiceForm() : buildHomeForm();
-
-        if (variant === 'service') {
-            var h3 = el('h3', {}, [document.createTextNode('Send a message')]);
-            container.appendChild(h3);
-        }
-        container.appendChild(form);
-
-        // Fallback form: submit via fetch with redirect: 'manual' so we stay on page and show inline thank-you
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            var btn = form.querySelector('button[type="submit"]');
-            var btnDefaultText = btn ? btn.textContent : 'Submit Request';
-            if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-
-            var formData = new FormData(form);
-            fetch(FORM_ACTION, { method: 'POST', body: formData, redirect: 'manual' })
-                .then(function (r) {
-                    // FormSubmit.co returns 302 to _next; with redirect: 'manual' we get opaqueredirect or 302
-                    if (r.type === 'opaqueredirect' || r.redirected || r.status === 302 || r.ok) {
-                        showThankYou(form);
-                        return;
-                    }
-                    if (btn) { btn.disabled = false; btn.textContent = btnDefaultText; }
-                    showFormError(container, form, btn, btnDefaultText, 'Submission failed. Please try again.');
-                })
-                .catch(function () {
-                    if (btn) { btn.disabled = false; btn.textContent = btnDefaultText; }
-                    showFormError(container, form, btn, btnDefaultText, 'There was an error.');
-                });
-        });
-
-        if (window.turnstile) {
-            renderTurnstile(container);
-        } else {
-            window.addEventListener('load', function () { renderTurnstile(container); });
-        }
+        var message = el('p', { className: 'form-message error' }, [
+            document.createTextNode('The secure contact form is temporarily unavailable. Call (619) 288-3094 or email adam@ehsanalytical.com.')
+        ]);
+        container.appendChild(message);
     }
 
     if (document.readyState === 'loading') {
